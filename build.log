@@ -1,0 +1,329 @@
+Mock Version: 1.3.4
+ENTER ['do'](['bash', '--login', '-c', '/usr/bin/rpmbuild -bs --target x86_64 --nodeps /builddir/build/SPECS/libsrtp.spec'], logger=<mockbuild.trace_decorator.getLog object at 0x7f274971f278>printOutput=TruechrootPath='/var/lib/mock/nethserver-7-x86_64/root'nspawn_args=[]uid=1000shell=Falseenv={'PROMPT_COMMAND': 'printf "\\033]0;<mock-chroot>\\007"', 'TERM': 'vt100', 'PS1': '<mock-chroot> \\s-\\v\\$ ', 'PATH': '/usr/bin:/bin:/usr/sbin:/sbin', 'SHELL': '/bin/bash', 'HOSTNAME': 'mock', 'LANG': 'C', 'HOME': '/builddir'}user='mockbuild'timeout=0gid=135)
+Executing command: ['bash', '--login', '-c', '/usr/bin/rpmbuild -bs --target x86_64 --nodeps /builddir/build/SPECS/libsrtp.spec'] with env {'PROMPT_COMMAND': 'printf "\\033]0;<mock-chroot>\\007"', 'TERM': 'vt100', 'PS1': '<mock-chroot> \\s-\\v\\$ ', 'PATH': '/usr/bin:/bin:/usr/sbin:/sbin', 'SHELL': '/bin/bash', 'HOSTNAME': 'mock', 'LANG': 'C', 'HOME': '/builddir'} and shell False
+Building target platforms: x86_64
+Building for target x86_64
+Wrote: /builddir/build/SRPMS/libsrtp-1.5.4-3.ns7.src.rpm
+Child return code was: 0
+Mock Version: 1.3.4
+ENTER ['do'](['bash', '--login', '-c', '/usr/bin/rpmbuild -bs --target x86_64 --nodeps /builddir/build/SPECS/libsrtp.spec'], gid=135user='mockbuild'timeout=0uid=1000shell=Falsenspawn_args=[]printOutput=Trueenv={'HOME': '/builddir', 'SHELL': '/bin/bash', 'HOSTNAME': 'mock', 'TERM': 'vt100', 'PROMPT_COMMAND': 'printf "\\033]0;<mock-chroot>\\007"', 'PS1': '<mock-chroot> \\s-\\v\\$ ', 'PATH': '/usr/bin:/bin:/usr/sbin:/sbin', 'LANG': 'C'}chrootPath='/var/lib/mock/nethserver-7-x86_64/root'logger=<mockbuild.trace_decorator.getLog object at 0x7ff2fa1fa240>)
+Executing command: ['bash', '--login', '-c', '/usr/bin/rpmbuild -bs --target x86_64 --nodeps /builddir/build/SPECS/libsrtp.spec'] with env {'HOME': '/builddir', 'SHELL': '/bin/bash', 'HOSTNAME': 'mock', 'TERM': 'vt100', 'PROMPT_COMMAND': 'printf "\\033]0;<mock-chroot>\\007"', 'PS1': '<mock-chroot> \\s-\\v\\$ ', 'PATH': '/usr/bin:/bin:/usr/sbin:/sbin', 'LANG': 'C'} and shell False
+Building target platforms: x86_64
+Building for target x86_64
+Wrote: /builddir/build/SRPMS/libsrtp-1.5.4-3.ns7.src.rpm
+Child return code was: 0
+ENTER ['do'](['bash', '--login', '-c', '/usr/bin/rpmbuild -bb --target x86_64 --nodeps /builddir/build/SPECS/libsrtp.spec'], gid=135user='mockbuild'timeout=0uid=1000shell=Falsenspawn_args=[]printOutput=Trueenv={'HOME': '/builddir', 'SHELL': '/bin/bash', 'HOSTNAME': 'mock', 'TERM': 'vt100', 'PROMPT_COMMAND': 'printf "\\033]0;<mock-chroot>\\007"', 'PS1': '<mock-chroot> \\s-\\v\\$ ', 'PATH': '/usr/bin:/bin:/usr/sbin:/sbin', 'LANG': 'C'}chrootPath='/var/lib/mock/nethserver-7-x86_64/root'logger=<mockbuild.trace_decorator.getLog object at 0x7ff2fa1fa240>)
+Executing command: ['bash', '--login', '-c', '/usr/bin/rpmbuild -bb --target x86_64 --nodeps /builddir/build/SPECS/libsrtp.spec'] with env {'HOME': '/builddir', 'SHELL': '/bin/bash', 'HOSTNAME': 'mock', 'TERM': 'vt100', 'PROMPT_COMMAND': 'printf "\\033]0;<mock-chroot>\\007"', 'PS1': '<mock-chroot> \\s-\\v\\$ ', 'PATH': '/usr/bin:/bin:/usr/sbin:/sbin', 'LANG': 'C'} and shell False
+Building target platforms: x86_64
+Building for target x86_64
+Executing(%prep): /bin/sh -e /var/tmp/rpm-tmp.63APfs
++ umask 022
++ cd /builddir/build/BUILD
++ cd /builddir/build/BUILD
++ rm -rf libsrtp-1.5.4
++ /usr/bin/gzip -dc /builddir/build/SOURCES/v1.5.4.tar.gz
++ /usr/bin/tar -xf -
++ STATUS=0
++ '[' 0 -ne 0 ']'
++ cd libsrtp-1.5.4
++ /usr/bin/chmod -Rf a+rX,u+w,g-w,o-w .
++ echo 'Patch #0 (libsrtp-1.5.4-shared-fix.patch):'
+Patch #0 (libsrtp-1.5.4-shared-fix.patch):
++ /usr/bin/cat /builddir/build/SOURCES/libsrtp-1.5.4-shared-fix.patch
++ /usr/bin/patch -p1 -b --suffix .sharedfix --fuzz=0
+patching file Makefile.in
++ echo 'Patch #1 (libsrtp-srtp_aes_encrypt.patch):'
+Patch #1 (libsrtp-srtp_aes_encrypt.patch):
++ /usr/bin/cat /builddir/build/SOURCES/libsrtp-srtp_aes_encrypt.patch
++ /usr/bin/patch -p1 -b --suffix .srtp_aes_encrypt --fuzz=0
+patching file crypto/cipher/aes.c
+Hunk #1 succeeded at 2084 (offset 82 lines).
+patching file crypto/cipher/aes_cbc.c
+Hunk #1 succeeded at 193 (offset 1 line).
+patching file crypto/cipher/aes_icm.c
+Hunk #2 succeeded at 319 (offset 3 lines).
+patching file crypto/include/aes.h
+patching file crypto/rng/prng.c
+patching file crypto/test/aes_calc.c
+Hunk #1 succeeded at 145 (offset 36 lines).
+patching file tables/aes_tables.c
++ echo 'Patch #2 (libsrtp-sha1-name-fix.patch):'
+Patch #2 (libsrtp-sha1-name-fix.patch):
++ /usr/bin/cat /builddir/build/SOURCES/libsrtp-sha1-name-fix.patch
++ /usr/bin/patch -p1 -b --suffix .sha1-name-fix --fuzz=0
+patching file crypto/hash/hmac.c
+patching file crypto/hash/sha1.c
+patching file crypto/include/sha1.h
+Hunk #1 succeeded at 107 (offset 4 lines).
+Hunk #2 succeeded at 121 (offset 4 lines).
+Hunk #3 succeeded at 145 (offset 4 lines).
+patching file crypto/test/sha1_driver.c
++ echo 'Patch #3 (libsrtp-fix-name-collision-on-MIPS.patch):'
+Patch #3 (libsrtp-fix-name-collision-on-MIPS.patch):
++ /usr/bin/cat /builddir/build/SOURCES/libsrtp-fix-name-collision-on-MIPS.patch
++ /usr/bin/patch -p1 -b --suffix .mips-name-fix --fuzz=0
+patching file test/srtp_driver.c
++ exit 0
+Executing(%build): /bin/sh -e /var/tmp/rpm-tmp.eWh7uh
++ umask 022
++ cd /builddir/build/BUILD
++ cd libsrtp-1.5.4
++ export 'CFLAGS=-O2 -g -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector-strong --param=ssp-buffer-size=4 -grecord-gcc-switches   -m64 -mtune=generic -fPIC'
++ CFLAGS='-O2 -g -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector-strong --param=ssp-buffer-size=4 -grecord-gcc-switches   -m64 -mtune=generic -fPIC'
++ CFLAGS='-O2 -g -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector-strong --param=ssp-buffer-size=4 -grecord-gcc-switches   -m64 -mtune=generic -fPIC'
++ export CFLAGS
++ CXXFLAGS='-O2 -g -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector-strong --param=ssp-buffer-size=4 -grecord-gcc-switches   -m64 -mtune=generic'
++ export CXXFLAGS
++ FFLAGS='-O2 -g -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector-strong --param=ssp-buffer-size=4 -grecord-gcc-switches   -m64 -mtune=generic -I/usr/lib64/gfortran/modules'
++ export FFLAGS
++ FCFLAGS='-O2 -g -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector-strong --param=ssp-buffer-size=4 -grecord-gcc-switches   -m64 -mtune=generic -I/usr/lib64/gfortran/modules'
++ export FCFLAGS
++ LDFLAGS='-Wl,-z,relro '
++ export LDFLAGS
++ '[' 1 == 1 ']'
++ '[' x86_64 == ppc64le ']'
+++ find . -name config.guess -o -name config.sub
++ for i in '$(find . -name config.guess -o -name config.sub)'
+++ basename ./config.sub
++ '[' -f /usr/lib/rpm/redhat/config.sub ']'
++ /usr/bin/rm -f ./config.sub
+++ basename ./config.sub
++ /usr/bin/cp -fv /usr/lib/rpm/redhat/config.sub ./config.sub
+'/usr/lib/rpm/redhat/config.sub' -> './config.sub'
++ for i in '$(find . -name config.guess -o -name config.sub)'
+++ basename ./config.guess
++ '[' -f /usr/lib/rpm/redhat/config.guess ']'
++ /usr/bin/rm -f ./config.guess
+++ basename ./config.guess
++ /usr/bin/cp -fv /usr/lib/rpm/redhat/config.guess ./config.guess
+'/usr/lib/rpm/redhat/config.guess' -> './config.guess'
++ ./configure --build=x86_64-redhat-linux-gnu --host=x86_64-redhat-linux-gnu --program-prefix= --disable-dependency-tracking --prefix=/usr --exec-prefix=/usr --bindir=/usr/bin --sbindir=/usr/sbin --sysconfdir=/etc --datadir=/usr/share --includedir=/usr/include --libdir=/usr/lib64 --libexecdir=/usr/libexec --localstatedir=/var --sharedstatedir=/var/lib --mandir=/usr/share/man --infodir=/usr/share/info
+configure: WARNING: unrecognized options: --disable-dependency-tracking
+checking for x86_64-redhat-linux-gnu-gcc... no
+checking for gcc... gcc
+checking whether the C compiler works... yes
+checking for C compiler default output file name... a.out
+checking for suffix of executables... 
+checking whether we are cross compiling... no
+checking for suffix of object files... o
+checking whether we are using the GNU C compiler... yes
+checking whether gcc accepts -g... yes
+checking for gcc option to accept ISO C89... none needed
+checking for x86_64-redhat-linux-gnu-ar... no
+checking for x86_64-redhat-linux-gnu-lib... no
+checking for x86_64-redhat-linux-gnu-link... no
+checking for ar... ar
+checking the archiver (ar) interface... ar
+checking for x86_64-redhat-linux-gnu-ranlib... no
+checking for ranlib... ranlib
+checking for x86_64-redhat-linux-gnu-gcc... gcc
+checking whether we are using the GNU C compiler... (cached) yes
+checking whether gcc accepts -g... (cached) yes
+checking for gcc option to accept ISO C89... (cached) none needed
+checking for a BSD-compatible install... /usr/bin/install -c
+checking how to run the C preprocessor... gcc -E
+checking for grep that handles long lines and -e... /usr/bin/grep
+checking for egrep... /usr/bin/grep -E
+checking for ANSI C header files... yes
+checking for sys/types.h... yes
+checking for sys/stat.h... yes
+checking for stdlib.h... yes
+checking for string.h... yes
+checking for memory.h... yes
+checking for strings.h... yes
+checking for inttypes.h... yes
+checking for stdint.h... yes
+checking for unistd.h... yes
+checking whether byte ordering is bigendian... no
+checking build system type... x86_64-redhat-linux-gnu
+checking host system type... x86_64-redhat-linux-gnu
+checking whether to build for Linux kernel context... no
+checking for /dev/urandom... yes
+checking for ANSI C header files... (cached) yes
+checking for stdlib.h... (cached) yes
+checking for unistd.h... (cached) yes
+checking byteswap.h usability... yes
+checking byteswap.h presence... yes
+checking for byteswap.h... yes
+checking for stdint.h... (cached) yes
+checking sys/uio.h usability... yes
+checking sys/uio.h presence... yes
+checking for sys/uio.h... yes
+checking for inttypes.h... (cached) yes
+checking for sys/types.h... (cached) yes
+checking machine/types.h usability... no
+checking machine/types.h presence... no
+checking for machine/types.h... no
+checking sys/int_types.h usability... no
+checking sys/int_types.h presence... no
+checking for sys/int_types.h... no
+checking sys/socket.h usability... yes
+checking sys/socket.h presence... yes
+checking for sys/socket.h... yes
+checking netinet/in.h usability... yes
+checking netinet/in.h presence... yes
+checking for netinet/in.h... yes
+checking arpa/inet.h usability... yes
+checking arpa/inet.h presence... yes
+checking for arpa/inet.h... yes
+checking windows.h usability... no
+checking windows.h presence... no
+checking for windows.h... no
+checking syslog.h usability... yes
+checking syslog.h presence... yes
+checking for syslog.h... yes
+checking for int8_t... yes
+checking for uint8_t... yes
+checking for int16_t... yes
+checking for uint16_t... yes
+checking for int32_t... yes
+checking for uint32_t... yes
+checking for uint64_t... yes
+checking size of unsigned long... 8
+checking size of unsigned long long... 8
+checking for an ANSI C-conforming const... yes
+checking for inline... inline
+checking for size_t... yes
+checking for socket... yes
+checking for inet_aton... yes
+checking for usleep... yes
+checking for sigaction... yes
+checking whether to compile in debugging... yes
+checking whether to use ISMAcryp code... no
+checking whether to leverage OpenSSL crypto... no
+checking which random device to use... /dev/urandom
+checking for pcap_create in -lpcap... no
+checking whether to use syslog for error reporting... no
+checking whether to use stdout for error reporting... yes
+checking whether to use /dev/console for error reporting... no
+checking whether to use GDOI key management... no
+checking for pkg-config... yes
+configure: creating ./config.status
+config.status: creating libsrtp.pc
+config.status: creating Makefile
+config.status: creating crypto/Makefile
+config.status: creating doc/Makefile
+config.status: creating crypto/include/config.h
+configure: WARNING: unrecognized options: --disable-dependency-tracking
++ make -j4 shared_library
+gcc -DHAVE_CONFIG_H -Icrypto/include -I./include -I./crypto/include -fPIC  -O2 -g -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector-strong --param=ssp-buffer-size=4 -grecord-gcc-switches   -m64 -mtune=generic -fPIC -c srtp/srtp.c -o srtp/srtp.o
+gcc -DHAVE_CONFIG_H -Icrypto/include -I./include -I./crypto/include -fPIC  -O2 -g -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector-strong --param=ssp-buffer-size=4 -grecord-gcc-switches   -m64 -mtune=generic -fPIC -c srtp/ekt.c -o srtp/ekt.o
+gcc -DHAVE_CONFIG_H -Icrypto/include -I./include -I./crypto/include -fPIC  -O2 -g -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector-strong --param=ssp-buffer-size=4 -grecord-gcc-switches   -m64 -mtune=generic -fPIC -c crypto/cipher/cipher.c -o crypto/cipher/cipher.o
+gcc -DHAVE_CONFIG_H -Icrypto/include -I./include -I./crypto/include -fPIC  -O2 -g -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector-strong --param=ssp-buffer-size=4 -grecord-gcc-switches   -m64 -mtune=generic -fPIC -c crypto/cipher/null_cipher.c -o crypto/cipher/null_cipher.o
+gcc -DHAVE_CONFIG_H -Icrypto/include -I./include -I./crypto/include -fPIC  -O2 -g -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector-strong --param=ssp-buffer-size=4 -grecord-gcc-switches   -m64 -mtune=generic -fPIC -c crypto/cipher/aes_icm.c -o crypto/cipher/aes_icm.o
+gcc -DHAVE_CONFIG_H -Icrypto/include -I./include -I./crypto/include -fPIC  -O2 -g -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector-strong --param=ssp-buffer-size=4 -grecord-gcc-switches   -m64 -mtune=generic -fPIC -c crypto/cipher/aes.c -o crypto/cipher/aes.o
+gcc -DHAVE_CONFIG_H -Icrypto/include -I./include -I./crypto/include -fPIC  -O2 -g -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector-strong --param=ssp-buffer-size=4 -grecord-gcc-switches   -m64 -mtune=generic -fPIC -c crypto/cipher/aes_cbc.c -o crypto/cipher/aes_cbc.o
+gcc -DHAVE_CONFIG_H -Icrypto/include -I./include -I./crypto/include -fPIC  -O2 -g -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector-strong --param=ssp-buffer-size=4 -grecord-gcc-switches   -m64 -mtune=generic -fPIC -c crypto/hash/null_auth.c -o crypto/hash/null_auth.o
+gcc -DHAVE_CONFIG_H -Icrypto/include -I./include -I./crypto/include -fPIC  -O2 -g -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector-strong --param=ssp-buffer-size=4 -grecord-gcc-switches   -m64 -mtune=generic -fPIC -c crypto/hash/auth.c -o crypto/hash/auth.o
+gcc -DHAVE_CONFIG_H -Icrypto/include -I./include -I./crypto/include -fPIC  -O2 -g -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector-strong --param=ssp-buffer-size=4 -grecord-gcc-switches   -m64 -mtune=generic -fPIC -c crypto/hash/hmac.c -o crypto/hash/hmac.o
+gcc -DHAVE_CONFIG_H -Icrypto/include -I./include -I./crypto/include -fPIC  -O2 -g -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector-strong --param=ssp-buffer-size=4 -grecord-gcc-switches   -m64 -mtune=generic -fPIC -c crypto/hash/sha1.c -o crypto/hash/sha1.o
+gcc -DHAVE_CONFIG_H -Icrypto/include -I./include -I./crypto/include -fPIC  -O2 -g -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector-strong --param=ssp-buffer-size=4 -grecord-gcc-switches   -m64 -mtune=generic -fPIC -c crypto/math/datatypes.c -o crypto/math/datatypes.o
+gcc -DHAVE_CONFIG_H -Icrypto/include -I./include -I./crypto/include -fPIC  -O2 -g -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector-strong --param=ssp-buffer-size=4 -grecord-gcc-switches   -m64 -mtune=generic -fPIC -c crypto/math/stat.c -o crypto/math/stat.o
+gcc -DHAVE_CONFIG_H -Icrypto/include -I./include -I./crypto/include -fPIC  -O2 -g -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector-strong --param=ssp-buffer-size=4 -grecord-gcc-switches   -m64 -mtune=generic -fPIC -c crypto/kernel/crypto_kernel.c -o crypto/kernel/crypto_kernel.o
+gcc -DHAVE_CONFIG_H -Icrypto/include -I./include -I./crypto/include -fPIC  -O2 -g -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector-strong --param=ssp-buffer-size=4 -grecord-gcc-switches   -m64 -mtune=generic -fPIC -c crypto/kernel/alloc.c -o crypto/kernel/alloc.o
+gcc -DHAVE_CONFIG_H -Icrypto/include -I./include -I./crypto/include -fPIC  -O2 -g -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector-strong --param=ssp-buffer-size=4 -grecord-gcc-switches   -m64 -mtune=generic -fPIC -c crypto/kernel/key.c -o crypto/kernel/key.o
+gcc -DHAVE_CONFIG_H -Icrypto/include -I./include -I./crypto/include -fPIC  -O2 -g -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector-strong --param=ssp-buffer-size=4 -grecord-gcc-switches   -m64 -mtune=generic -fPIC -c crypto/rng/rand_source.c -o crypto/rng/rand_source.o
+gcc -DHAVE_CONFIG_H -Icrypto/include -I./include -I./crypto/include -fPIC  -O2 -g -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector-strong --param=ssp-buffer-size=4 -grecord-gcc-switches   -m64 -mtune=generic -fPIC -c crypto/rng/prng.c -o crypto/rng/prng.o
+gcc -DHAVE_CONFIG_H -Icrypto/include -I./include -I./crypto/include -fPIC  -O2 -g -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector-strong --param=ssp-buffer-size=4 -grecord-gcc-switches   -m64 -mtune=generic -fPIC -c crypto/rng/ctr_prng.c -o crypto/rng/ctr_prng.o
+gcc -DHAVE_CONFIG_H -Icrypto/include -I./include -I./crypto/include -fPIC  -O2 -g -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector-strong --param=ssp-buffer-size=4 -grecord-gcc-switches   -m64 -mtune=generic -fPIC -c crypto/kernel/err.c -o crypto/kernel/err.o
+gcc -DHAVE_CONFIG_H -Icrypto/include -I./include -I./crypto/include -fPIC  -O2 -g -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector-strong --param=ssp-buffer-size=4 -grecord-gcc-switches   -m64 -mtune=generic -fPIC -c crypto/replay/rdb.c -o crypto/replay/rdb.o
+gcc -DHAVE_CONFIG_H -Icrypto/include -I./include -I./crypto/include -fPIC  -O2 -g -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector-strong --param=ssp-buffer-size=4 -grecord-gcc-switches   -m64 -mtune=generic -fPIC -c crypto/replay/rdbx.c -o crypto/replay/rdbx.o
+gcc -DHAVE_CONFIG_H -Icrypto/include -I./include -I./crypto/include -fPIC  -O2 -g -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector-strong --param=ssp-buffer-size=4 -grecord-gcc-switches   -m64 -mtune=generic -fPIC -c crypto/replay/ut_sim.c -o crypto/replay/ut_sim.o
+gcc -shared -o libsrtp.so.1.0.0 -shared -Wl,-soname,libsrtp.so.1 \
+                srtp/srtp.o srtp/ekt.o crypto/cipher/cipher.o crypto/cipher/null_cipher.o crypto/cipher/aes_icm.o crypto/cipher/aes.o crypto/cipher/aes_cbc.o crypto/hash/null_auth.o crypto/hash/auth.o crypto/hash/hmac.o crypto/hash/sha1.o crypto/math/datatypes.o crypto/math/stat.o crypto/kernel/crypto_kernel.o crypto/kernel/alloc.o crypto/kernel/key.o crypto/rng/rand_source.o crypto/rng/prng.o crypto/rng/ctr_prng.o crypto/kernel/err.o crypto/replay/rdb.o crypto/replay/rdbx.o crypto/replay/ut_sim.o -L. -Wl,-z,relro  
+if [ -n "1.0.0" ]; then \
+	ln -sfn libsrtp.so.1.0.0 libsrtp.so.1; \
+	ln -sfn libsrtp.so.1.0.0 libsrtp.so; \
+fi
++ exit 0
+Executing(%install): /bin/sh -e /var/tmp/rpm-tmp.WPG61e
++ umask 022
++ cd /builddir/build/BUILD
++ '[' /builddir/build/BUILDROOT/libsrtp-1.5.4-3.ns7.x86_64 '!=' / ']'
++ rm -rf /builddir/build/BUILDROOT/libsrtp-1.5.4-3.ns7.x86_64
+++ dirname /builddir/build/BUILDROOT/libsrtp-1.5.4-3.ns7.x86_64
++ mkdir -p /builddir/build/BUILDROOT
++ mkdir /builddir/build/BUILDROOT/libsrtp-1.5.4-3.ns7.x86_64
++ cd libsrtp-1.5.4
++ make install DESTDIR=/builddir/build/BUILDROOT/libsrtp-1.5.4-3.ns7.x86_64
+/usr/bin/install -c -d /builddir/build/BUILDROOT/libsrtp-1.5.4-3.ns7.x86_64/usr/include/srtp
+/usr/bin/install -c -d /builddir/build/BUILDROOT/libsrtp-1.5.4-3.ns7.x86_64/usr/lib64
+cp ./include/*.h /builddir/build/BUILDROOT/libsrtp-1.5.4-3.ns7.x86_64/usr/include/srtp  
+cp ./crypto/include/*.h /builddir/build/BUILDROOT/libsrtp-1.5.4-3.ns7.x86_64/usr/include/srtp
+if [ "." != "." ]; then cp crypto/include/*.h /builddir/build/BUILDROOT/libsrtp-1.5.4-3.ns7.x86_64/usr/include/srtp; fi
+if [ -f libsrtp.a ]; then cp libsrtp.a /builddir/build/BUILDROOT/libsrtp-1.5.4-3.ns7.x86_64/usr/lib64/; fi
+if [ -f libsrtp.dll.a ]; then cp libsrtp.dll.a /builddir/build/BUILDROOT/libsrtp-1.5.4-3.ns7.x86_64/usr/lib64/; fi
+if [ -f libsrtp.so.1.0.0 ]; then \
+	/usr/bin/install -c -d /builddir/build/BUILDROOT/libsrtp-1.5.4-3.ns7.x86_64/usr/lib64; \
+	cp libsrtp.so.1.0.0 /builddir/build/BUILDROOT/libsrtp-1.5.4-3.ns7.x86_64/usr/lib64/; \
+	ln -sfn libsrtp.so.1.0.0 /builddir/build/BUILDROOT/libsrtp-1.5.4-3.ns7.x86_64/usr/lib64/libsrtp.so; \
+	ln -sfn libsrtp.so.1.0.0 /builddir/build/BUILDROOT/libsrtp-1.5.4-3.ns7.x86_64/usr/lib64/libsrtp.so.1; \
+fi
+if [ "libsrtp.pc" != "" ]; then \
+	/usr/bin/install -c -d /builddir/build/BUILDROOT/libsrtp-1.5.4-3.ns7.x86_64/usr/lib64/pkgconfig; \
+	cp ./libsrtp.pc /builddir/build/BUILDROOT/libsrtp-1.5.4-3.ns7.x86_64/usr/lib64/pkgconfig/; \
+fi
++ find /builddir/build/BUILDROOT/libsrtp-1.5.4-3.ns7.x86_64 -name '*.la' -exec rm -f '{}' ';'
++ mv /builddir/build/BUILDROOT/libsrtp-1.5.4-3.ns7.x86_64/usr/include/srtp/config.h /builddir/build/BUILDROOT/libsrtp-1.5.4-3.ns7.x86_64/usr/include/srtp/config-64.h
++ cp -a /builddir/build/SOURCES/config.h /builddir/build/BUILDROOT/libsrtp-1.5.4-3.ns7.x86_64/usr/include/srtp/config.h
++ /usr/lib/rpm/find-debuginfo.sh --strict-build-id -m --run-dwz --dwz-low-mem-die-limit 10000000 --dwz-max-die-limit 110000000 /builddir/build/BUILD/libsrtp-1.5.4
+extracting debug info from /builddir/build/BUILDROOT/libsrtp-1.5.4-3.ns7.x86_64/usr/lib64/libsrtp.so.1.0.0
+dwz: Too few files for multifile optimization
+/usr/lib/rpm/sepdebugcrcfix: Updated 1 CRC32s, 0 CRC32s did match.
+symlinked /usr/lib/debug/usr/lib64/libsrtp.so.1.0.0.debug to /usr/lib/debug/usr/lib64/libsrtp.so.1.debug
+symlinked /usr/lib/debug/usr/lib64/libsrtp.so.1.0.0.debug to /usr/lib/debug/usr/lib64/libsrtp.so.debug
+993 blocks
++ /usr/lib/rpm/check-buildroot
++ /usr/lib/rpm/redhat/brp-compress
++ /usr/lib/rpm/redhat/brp-strip-static-archive /usr/bin/strip
++ /usr/lib/rpm/brp-python-bytecompile /usr/bin/python 1
++ /usr/lib/rpm/redhat/brp-python-hardlink
++ /usr/lib/rpm/redhat/brp-java-repack-jars
+Processing files: libsrtp-1.5.4-3.ns7.x86_64
+Executing(%doc): /bin/sh -e /var/tmp/rpm-tmp.qopEkd
++ umask 022
++ cd /builddir/build/BUILD
++ cd libsrtp-1.5.4
++ DOCDIR=/builddir/build/BUILDROOT/libsrtp-1.5.4-3.ns7.x86_64/usr/share/doc/libsrtp-1.5.4
++ export DOCDIR
++ /usr/bin/mkdir -p /builddir/build/BUILDROOT/libsrtp-1.5.4-3.ns7.x86_64/usr/share/doc/libsrtp-1.5.4
++ cp -pr CHANGES /builddir/build/BUILDROOT/libsrtp-1.5.4-3.ns7.x86_64/usr/share/doc/libsrtp-1.5.4
++ cp -pr README /builddir/build/BUILDROOT/libsrtp-1.5.4-3.ns7.x86_64/usr/share/doc/libsrtp-1.5.4
++ cp -pr TODO /builddir/build/BUILDROOT/libsrtp-1.5.4-3.ns7.x86_64/usr/share/doc/libsrtp-1.5.4
++ cp -pr VERSION /builddir/build/BUILDROOT/libsrtp-1.5.4-3.ns7.x86_64/usr/share/doc/libsrtp-1.5.4
++ cp -pr doc/crypto_kernel.txt doc/intro.txt doc/references.txt /builddir/build/BUILDROOT/libsrtp-1.5.4-3.ns7.x86_64/usr/share/doc/libsrtp-1.5.4
++ cp -pr doc/libsrtp.pdf /builddir/build/BUILDROOT/libsrtp-1.5.4-3.ns7.x86_64/usr/share/doc/libsrtp-1.5.4
++ exit 0
+Executing(%license): /bin/sh -e /var/tmp/rpm-tmp.PCvDEb
++ umask 022
++ cd /builddir/build/BUILD
++ cd libsrtp-1.5.4
++ LICENSEDIR=/builddir/build/BUILDROOT/libsrtp-1.5.4-3.ns7.x86_64/usr/share/licenses/libsrtp-1.5.4
++ export LICENSEDIR
++ /usr/bin/mkdir -p /builddir/build/BUILDROOT/libsrtp-1.5.4-3.ns7.x86_64/usr/share/licenses/libsrtp-1.5.4
++ cp -pr LICENSE /builddir/build/BUILDROOT/libsrtp-1.5.4-3.ns7.x86_64/usr/share/licenses/libsrtp-1.5.4
++ exit 0
+Provides: libsrtp = 1.5.4-3.ns7 libsrtp(x86-64) = 1.5.4-3.ns7 libsrtp.so.1()(64bit)
+Requires(interp): /sbin/ldconfig /sbin/ldconfig
+Requires(rpmlib): rpmlib(CompressedFileNames) <= 3.0.4-1 rpmlib(FileDigests) <= 4.6.0-1 rpmlib(PayloadFilesHavePrefix) <= 4.0-1
+Requires(post): /sbin/ldconfig
+Requires(postun): /sbin/ldconfig
+Requires: libc.so.6()(64bit) libc.so.6(GLIBC_2.14)(64bit) libc.so.6(GLIBC_2.2.5)(64bit) libc.so.6(GLIBC_2.3.4)(64bit) libc.so.6(GLIBC_2.4)(64bit) libc.so.6(GLIBC_2.7)(64bit) rtld(GNU_HASH)
+Processing files: libsrtp-devel-1.5.4-3.ns7.x86_64
+Provides: libsrtp-devel = 1.5.4-3.ns7 libsrtp-devel(x86-64) = 1.5.4-3.ns7 pkgconfig(libsrtp) = 1.5.4
+Requires(rpmlib): rpmlib(CompressedFileNames) <= 3.0.4-1 rpmlib(FileDigests) <= 4.6.0-1 rpmlib(PayloadFilesHavePrefix) <= 4.0-1
+Requires: /usr/bin/pkg-config libsrtp.so.1()(64bit)
+Processing files: libsrtp-debuginfo-1.5.4-3.ns7.x86_64
+Provides: libsrtp-debuginfo = 1.5.4-3.ns7 libsrtp-debuginfo(x86-64) = 1.5.4-3.ns7
+Requires(rpmlib): rpmlib(FileDigests) <= 4.6.0-1 rpmlib(PayloadFilesHavePrefix) <= 4.0-1 rpmlib(CompressedFileNames) <= 3.0.4-1
+Checking for unpackaged file(s): /usr/lib/rpm/check-files /builddir/build/BUILDROOT/libsrtp-1.5.4-3.ns7.x86_64
+Wrote: /builddir/build/RPMS/libsrtp-1.5.4-3.ns7.x86_64.rpm
+Wrote: /builddir/build/RPMS/libsrtp-devel-1.5.4-3.ns7.x86_64.rpm
+Wrote: /builddir/build/RPMS/libsrtp-debuginfo-1.5.4-3.ns7.x86_64.rpm
+Executing(%clean): /bin/sh -e /var/tmp/rpm-tmp.jOUFw7
++ umask 022
++ cd /builddir/build/BUILD
++ cd libsrtp-1.5.4
++ /usr/bin/rm -rf /builddir/build/BUILDROOT/libsrtp-1.5.4-3.ns7.x86_64
++ exit 0
+Child return code was: 0
