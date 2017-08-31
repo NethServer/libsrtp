@@ -1,6 +1,6 @@
 %global shortname srtp
 
-Name:		libsrtp
+Name:		libsrtp15
 Version:	1.5.4
 Release:	3%{?dist}
 Summary:	An implementation of the Secure Real-time Transport Protocol (SRTP)
@@ -15,6 +15,7 @@ Patch0:		libsrtp-1.5.4-shared-fix.patch
 Patch1:		libsrtp-srtp_aes_encrypt.patch
 Patch2:		libsrtp-sha1-name-fix.patch
 Patch3:		libsrtp-fix-name-collision-on-MIPS.patch
+Conflicts:      libsrtp
 
 %description
 This package provides an implementation of the Secure Real-time
@@ -32,7 +33,7 @@ The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.
 
 %prep
-%setup -q -n %{name}-%{version}
+%setup -q -n libsrtp-%{version}
 %patch0 -p1 -b .sharedfix
 %patch1 -p1 -b .srtp_aes_encrypt
 %patch2 -p1 -b .sha1-name-fix
