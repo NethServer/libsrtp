@@ -15,7 +15,6 @@ Patch0:		libsrtp-1.5.4-shared-fix.patch
 Patch1:		libsrtp-srtp_aes_encrypt.patch
 Patch2:		libsrtp-sha1-name-fix.patch
 Patch3:		libsrtp-fix-name-collision-on-MIPS.patch
-Conflicts:      libsrtp
 
 %description
 This package provides an implementation of the Secure Real-time
