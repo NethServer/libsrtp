@@ -1,20 +1,22 @@
 %global shortname srtp
 
-Name:		libsrtp15
-Version:	1.5.4
-Release:	3%{?dist}
+Name:		libsrtp23
+Version:	2.3.0
+Release:	8%{?dist}
 Summary:	An implementation of the Secure Real-time Transport Protocol (SRTP)
-Group:		System Environment/Libraries
 License:	BSD
 URL:		https://github.com/cisco/libsrtp
 Source0:	https://github.com/cisco/libsrtp/archive/v%{version}.tar.gz
-# Universal config.h
-Source2:	config.h
+BuildRequires:	gcc, nss-devel, libpcap-devel
+BuildRequires: make
 # Fix shared lib so ldconfig doesn't complain
-Patch0:		libsrtp-1.5.4-shared-fix.patch
-Patch1:		libsrtp-srtp_aes_encrypt.patch
-Patch2:		libsrtp-sha1-name-fix.patch
-Patch3:		libsrtp-fix-name-collision-on-MIPS.patch
+Patch0:		libsrtp-2.3.0-shared-fix.patch
+# Fix namespace issue in test/util.c
+Patch1:		libsrtp-2.3.0-test-util.patch
+# Link test binaries against shared lib
+Patch2:		libsrtp-2.3.0-shared-test-fix.patch
+Provides:       libsrtp15 = 2:1.5.4-3
+Obsoletes:      libsrtp15 <= 2:1.5.4-4
 
 %description
 This package provides an implementation of the Secure Real-time
@@ -23,7 +25,6 @@ a supporting cryptographic kernel.
 
 %package devel
 Summary:	Development files for %{name}
-Group:		Development/Libraries
 Requires:	%{name}%{?_isa} = %{version}-%{release}
 Requires:	pkgconfig
 
@@ -31,12 +32,18 @@ Requires:	pkgconfig
 The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.
 
+%package tools
+Summary:	Tools for testing and decoding SRTP
+Requires:	%{name}%{?_isa} = %{version}-%{release}
+
+%description tools
+Tools for testing and decoding SRTP
+
 %prep
 %setup -q -n libsrtp-%{version}
 %patch0 -p1 -b .sharedfix
-%patch1 -p1 -b .srtp_aes_encrypt
-%patch2 -p1 -b .sha1-name-fix
-%patch3 -p1 -b .mips-name-fix
+%patch1 -p1 -b .utilfix
+%patch2 -p1 -b .test-shared-fix
 
 %if 0%{?rhel} > 0
 %ifarch ppc64
@@ -46,31 +53,85 @@ sed -i 's/-z noexecstack//' Makefile.in
 
 %build
 export CFLAGS="%{optflags} -fPIC"
-%configure
-make %{?_smp_mflags} shared_library
+%configure --enable-nss
+make %{?_smp_mflags} shared_library test
 
 %install
 make install DESTDIR=%{buildroot}
 find %{buildroot} -name '*.la' -exec rm -f {} ';'
+find %{buildroot} -name '*.a' -exec rm -f {} ';'
 
-# Handle multilib issues with config.h
-mv %{buildroot}%{_includedir}/%{shortname}/config.h %{buildroot}%{_includedir}/%{shortname}/config-%{__isa_bits}.h
-cp -a %{SOURCE2} %{buildroot}%{_includedir}/%{shortname}/config.h
+install -D -p -m 0755 test/dtls_srtp_driver %{buildroot}%{_bindir}/dtls_srtp_driver
+install -D -p -m 0755 test/rdbx_driver %{buildroot}%{_bindir}/rdbx_driver
+install -D -p -m 0755 test/replay_driver %{buildroot}%{_bindir}/replay_driver
+install -D -p -m 0755 test/roc_driver %{buildroot}%{_bindir}/roc_driver
+install -D -p -m 0755 test/rtp_decoder %{buildroot}%{_bindir}/rtp_decoder
+install -D -p -m 0755 test/rtpw %{buildroot}%{_bindir}/rtpw
+install -D -p -m 0755 test/srtp_driver %{buildroot}%{_bindir}/srtp_driver
+install -D -p -m 0755 test/test_srtp %{buildroot}%{_bindir}/test_srtp
 
-%post -p /sbin/ldconfig
-%postun -p /sbin/ldconfig
+%ldconfig_scriptlets
 
 %files
 %license LICENSE
-%doc CHANGES README TODO VERSION doc/*.txt doc/*.pdf
+%doc CHANGES README.md
 %{_libdir}/*.so.*
 
 %files devel
-%{_includedir}/%{shortname}/
-%{_libdir}/pkgconfig/libsrtp.pc
+%{_includedir}/%{shortname}2/
+%{_libdir}/pkgconfig/libsrtp2.pc
 %{_libdir}/*.so
 
+%files tools
+%{_bindir}/*
+
 %changelog
+* Mon Aug 09 2021 Mohan Boddu <mboddu@redhat.com> - 2.3.0-7
+- Rebuilt for IMA sigs, glibc 2.34, aarch64 flags
+  Related: rhbz#1991688
+
+* Fri Apr 16 2021 Mohan Boddu <mboddu@redhat.com> - 2.3.0-6
+- Rebuilt for RHEL 9 BETA on Apr 15th 2021. Related: rhbz#1947937
+
+* Tue Jan 26 2021 Fedora Release Engineering <releng@fedoraproject.org> - 2.3.0-5
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_34_Mass_Rebuild
+
+* Mon Oct 12 2020 Tom Callaway <spot@fedoraproject.org> - 2.3.0-4
+- add -tools subpackage (thanks to Gerd v. Egidy)
+
+* Tue Jul 28 2020 Fedora Release Engineering <releng@fedoraproject.org> - 2.3.0-3
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_33_Mass_Rebuild
+
+* Wed Jan 29 2020 Fedora Release Engineering <releng@fedoraproject.org> - 2.3.0-2
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_32_Mass_Rebuild
+
+* Tue Jan  7 2020 Tom Callaway <spot@fedoraproject.org> - 2.3.0-1
+- update to 2.3.0
+
+* Thu Jul 25 2019 Fedora Release Engineering <releng@fedoraproject.org> - 1.5.4-11
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_31_Mass_Rebuild
+
+* Fri Feb 01 2019 Fedora Release Engineering <releng@fedoraproject.org> - 1.5.4-10
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_30_Mass_Rebuild
+
+* Mon Jul 23 2018 Tom Callaway <spot@fedoraproject.org> - 1.5.4-9
+- add BuildRequires: gcc
+
+* Fri Jul 13 2018 Fedora Release Engineering <releng@fedoraproject.org> - 1.5.4-8
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_29_Mass_Rebuild
+
+* Wed Feb 07 2018 Fedora Release Engineering <releng@fedoraproject.org> - 1.5.4-7
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_28_Mass_Rebuild
+
+* Thu Aug 03 2017 Fedora Release Engineering <releng@fedoraproject.org> - 1.5.4-6
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_27_Binutils_Mass_Rebuild
+
+* Wed Jul 26 2017 Fedora Release Engineering <releng@fedoraproject.org> - 1.5.4-5
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_27_Mass_Rebuild
+
+* Fri Feb 10 2017 Fedora Release Engineering <releng@fedoraproject.org> - 1.5.4-4
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_26_Mass_Rebuild
+
 * Wed Mar  2 2016 Tom Callaway <spot@fedoraproject.org> - 1.5.4-3
 - use upstream provided .pc file (bz1313590)
 
