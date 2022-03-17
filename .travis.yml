@@ -22,17 +22,16 @@ env:
         -e NSVER
         -e ENDPOINTS_PACK
         -e YUM_ARGS
-        -e COMMAND
         "
 
 script: |
       set -e
-      export COMMAND="scl enable devtoolset-9 -- makerpms"
+      export YUM_ARGS="${TRAVIS_PULL_REQUEST_SHA:+--enablerepo=nethserver-testing}"
       docker run -ti \
         --name makerpms ${EVARS} \
         --hostname "b${TRAVIS_BUILD_NUMBER}.nethserver.org" \
         --volume $PWD:/srv/makerpms/src:ro ${DOCKER_IMAGE} \
-        makerpms-travis *.spec
+        scl enable devtoolset-9 -- makerpms-travis *.spec ${TRAVIS_PULL_REQUEST_SHA}
       docker commit makerpms nethserver/build
       docker run -ti ${EVARS} \
         -e SECRET \
