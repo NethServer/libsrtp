@@ -1,8 +1,8 @@
 %global shortname srtp
 
 Name:		libsrtp23
-Version:	2.3.0
-Release:	8%{?dist}
+Version: 2.3.0
+Release: 1%{?dist}
 Summary:	An implementation of the Secure Real-time Transport Protocol (SRTP)
 License:	BSD
 URL:		https://github.com/cisco/libsrtp
@@ -86,6 +86,9 @@ install -D -p -m 0755 test/test_srtp %{buildroot}%{_bindir}/test_srtp
 %{_bindir}/*
 
 %changelog
+* Thu May 26 2022 Stefano Fancello <stefano.fancello@nethesis.it> - 2.3.0-1
+- Update from 1.5 to 2.3 - nethesis/dev#6124
+
 * Mon Aug 09 2021 Mohan Boddu <mboddu@redhat.com> - 2.3.0-7
 - Rebuilt for IMA sigs, glibc 2.34, aarch64 flags
   Related: rhbz#1991688
