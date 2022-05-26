@@ -26,7 +26,6 @@ env:
 
 script: |
       set -e
-      export YUM_ARGS="${TRAVIS_PULL_REQUEST_SHA:+--enablerepo=nethserver-testing}"
       docker run -ti \
         --name makerpms ${EVARS} \
         --hostname "b${TRAVIS_BUILD_NUMBER}.nethserver.org" \
